@@ -15,9 +15,7 @@ const Transaction = (props) => {
       <button
         onClick={() => deleteTransaction(props.transaction.id)}
         className="delete-btn"
-      >
-        x
-      </button>
+      ></button>
     </li>
   );
 };
