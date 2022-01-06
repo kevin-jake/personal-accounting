@@ -1,0 +1,32 @@
+{
+  "name": "personal-accounting",
+  "version": "1.0.0",
+  "description": "Backend for the accounting app",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevin-jake/personal-accounting.git"
+  },
+  "author": "Jek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevin-jake/personal-accounting/issues"
+  },
+  "homepage": "https://github.com/kevin-jake/personal-accounting#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.5",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
+  }
+}

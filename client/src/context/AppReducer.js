@@ -10,7 +10,18 @@ export default (state, action) => {
     case "ADD":
       return {
         ...state,
-        transactions: [action.payload, ...state.transactions],
+        transactions: [...state.transactions, action.payload],
+      };
+    case "GET_transact":
+      return {
+        ...state,
+        loading: false,
+        transactions: action.payload,
+      };
+    case "transact_err":
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;
