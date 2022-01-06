@@ -13,7 +13,7 @@ const TransactionList = () => {
       <h3>History</h3>
       <ul id="list" className="list">
         {transactions.map((transaction) => (
-          <Transaction key={transaction.id} transaction={transaction} />
+          <Transaction key={transaction._id} transaction={transaction} />
         ))}
       </ul>
     </>

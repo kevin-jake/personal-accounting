@@ -1,16 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
-import res from "express/lib/response";
 
 //Initial State
 const initialState = {
-  transactions: [
-    // { id: 1, text: "Flower", amount: -20 },
-    // { id: 2, text: "Salary", amount: 300 },
-    // { id: 3, text: "Book", amount: -10 },
-    // { id: 4, text: "Camera", amount: 150 },
-  ],
+  transactions: [],
   error: null,
   loading: true,
 };
@@ -27,19 +21,36 @@ export const GlobalProvider = (props) => {
     try {
       const res = await axios.get("/api/v1/transactions");
       res.data.data;
-
       dispatch({ type: "GET_transact", payload: res.data.data });
     } catch (err) {
       dispatch({ type: "transact_err", payload: err.response.data.error });
     }
   }
 
-  function deleteTransaction(id) {
-    dispatch({ type: "DELETE", payload: id });
+  async function deleteTransaction(id) {
+    try {
+      await axios.delete(`/api/v1/transactions/${id}`);
+      dispatch({ type: "DELETE", payload: id });
+    } catch (err) {
+      dispatch({ type: "transact_err", payload: err.response.data.error });
+    }
   }
 
-  function addTransaction(transaction) {
-    dispatch({ type: "ADD", payload: transaction });
+  async function addTransaction(transaction) {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/v1/transactions", transaction, config);
+      dispatch({
+        type: "ADD",
+        payload: res.data.data,
+      });
+    } catch (err) {
+      dispatch({ type: "transact_err", payload: err.response.data.error });
+    }
   }
 
   const value = {
@@ -50,8 +61,6 @@ export const GlobalProvider = (props) => {
     addTransaction,
     getTransactions,
   };
-
-  console.log(value);
 
   return (
     <GlobalContext.Provider value={value}>
