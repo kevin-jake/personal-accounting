@@ -7,6 +7,7 @@ const TransactionList = (props) => {
 
   useEffect(() => {
     getTransactions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   let rethtml = <></>;

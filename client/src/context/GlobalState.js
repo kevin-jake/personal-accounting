@@ -25,7 +25,7 @@ export const GlobalProvider = (props) => {
   async function getTransactions() {
     try {
       const res = await axios.get("/api/v1/transactions");
-      res.data.data;
+      // res.data.data;
       dispatch({ type: "GET_transact", payload: res.data.data });
     } catch (err) {
       dispatch({ type: "transact_err", payload: err.response.data.error });
