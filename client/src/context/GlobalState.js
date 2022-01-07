@@ -4,7 +4,12 @@ import axios from "axios";
 
 //Initial State
 const initialState = {
-  transactions: [],
+  transactions: [
+    { id: 1, text: "Flower", amount: 20, type: "expense" },
+    { id: 2, text: "Salary", amount: 300, type: "income" },
+    { id: 3, text: "Book", amount: 10, type: "expense" },
+    { id: 4, text: "Camera", amount: 150, type: "expense" },
+  ],
   error: null,
   loading: true,
 };

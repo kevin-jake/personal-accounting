@@ -2,22 +2,38 @@ import React, { useContext, useEffect } from "react";
 import Transaction from "./Transaction";
 import { GlobalContext } from "../context/GlobalState";
 
-const TransactionList = () => {
+const TransactionList = (props) => {
   const { transactions, getTransactions } = useContext(GlobalContext);
 
   useEffect(() => {
     getTransactions();
   }, []);
-  return (
-    <>
-      <h3>History</h3>
-      <ul id="list" className="list">
-        {transactions.map((transaction) => (
-          <Transaction key={transaction._id} transaction={transaction} />
-        ))}
-      </ul>
-    </>
-  );
+
+  let rethtml = <></>;
+  if (props.type === "expense") {
+    const expenses = transactions.filter((item) => item.type === "expense");
+    rethtml = (
+      <>
+        <ul id="list" className="list">
+          {expenses.map((transaction) => (
+            <Transaction key={transaction._id} transaction={transaction} />
+          ))}
+        </ul>
+      </>
+    );
+  } else {
+    const income = transactions.filter((item) => item.type === "income");
+    rethtml = (
+      <>
+        <ul id="list" className="list">
+          {income.map((transaction) => (
+            <Transaction key={transaction._id} transaction={transaction} />
+          ))}
+        </ul>
+      </>
+    );
+  }
+  return rethtml;
 };
 
 export default TransactionList;

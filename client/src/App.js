@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
 import Balance from "./components/Balance";
@@ -14,11 +14,18 @@ const App = (props) => {
   return (
     <GlobalProvider>
       <Container>
-        <Header />
-        <Balance />
-        <IncomeExpenses />
-        <TransactionList />
-        <AddTransaction />
+        <Row>
+          <Header />
+        </Row>
+        <Row>
+          <Balance />
+        </Row>
+        <Row className="align-items-md-stretch">
+          <IncomeExpenses />
+        </Row>
+        <Row>
+          <AddTransaction />
+        </Row>
       </Container>
     </GlobalProvider>
   );
