@@ -11,7 +11,7 @@ const Balance = () => {
   return (
     <div className="h-100 p-5 text-white bg-dark rounded-3">
       <h2>Balance</h2>
-      <p> Php {numberWithCommas(total)}</p>
+      <h1> Php {numberWithCommas(total)}</h1>
     </div>
   );
 };
