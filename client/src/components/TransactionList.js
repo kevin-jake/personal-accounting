@@ -13,6 +13,7 @@ const TransactionList = (props) => {
   let rethtml = <></>;
   if (props.type === "expense") {
     const expenses = transactions.filter((item) => item.type === "expense");
+    console.log(expenses);
     rethtml = (
       <>
         <ul id="list" className="list">
