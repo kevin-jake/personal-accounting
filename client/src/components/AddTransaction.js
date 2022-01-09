@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import { GlobalContext } from "../context/GlobalState";
+import { numberWithCommas } from "../utils/format";
 
 export const AddTransaction = () => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState(0);
-  const [type, setType] = useState("");
+  const [type, setType] = useState("expense");
 
   const { addTransaction } = useContext(GlobalContext);
 
@@ -41,7 +42,7 @@ export const AddTransaction = () => {
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="Enter amount..."
+            placeholder="Enter number..."
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -52,8 +53,10 @@ export const AddTransaction = () => {
             onChange={(e) => setType(e.target.value)}
             placeholder="Enter type"
           >
-            <option>expense</option>
-            <option>income</option>
+            <option value="expense" active>
+              Money Out
+            </option>
+            <option value="income">Money In</option>
           </Form.Select>
         </Form.Group>
         <Button type="submit">Add transaction</Button>

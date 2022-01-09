@@ -6,7 +6,7 @@ import { numberWithCommas } from "../utils/format";
 
 import TransactionList from "./TransactionList";
 
-const IncomeExpenses = () => {
+const IncomeExpenses = ({ dateNow }) => {
   const { transactions } = useContext(GlobalContext);
 
   const income = transactions
@@ -26,7 +26,7 @@ const IncomeExpenses = () => {
             Php {numberWithCommas(income.toFixed(2))}
           </p>
           <h5>Transactions</h5>
-          <TransactionList type="income" />
+          <TransactionList type="income" dateNow={dateNow} />
         </div>
       </Col>
       <Col xs={12} md={6}>
@@ -36,7 +36,7 @@ const IncomeExpenses = () => {
             Php {numberWithCommas(expense.toFixed(2))}
           </p>
           <h5>Transactions</h5>
-          <TransactionList type="expense" />
+          <TransactionList type="expense" dateNow={dateNow} />
         </div>
       </Col>
     </>

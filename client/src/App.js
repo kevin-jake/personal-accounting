@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
@@ -9,18 +9,24 @@ import AddTransaction from "./components/AddTransaction";
 
 import { GlobalProvider } from "./context/GlobalState";
 
-const App = (props) => {
+const App = () => {
+  const [dateNow, setDateNow] = useState(new Date(Date.now()));
   return (
     <GlobalProvider>
       <Container>
         <Row>
-          <Header />
+          <Header
+            dateNow={dateNow}
+            dateNowHandler={(date) => {
+              setDateNow(date);
+            }}
+          />
         </Row>
         <Row>
           <Balance />
         </Row>
         <Row className="align-items-md-stretch">
-          <IncomeExpenses />
+          <IncomeExpenses dateNow={dateNow} />
         </Row>
         <Row>
           <AddTransaction />

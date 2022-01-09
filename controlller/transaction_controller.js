@@ -4,8 +4,20 @@ const Transaction = require("../models/transactionModel");
 // @route GET /api/v1/transactions
 // @access PUBLIC
 exports.getTransactions = async (req, res, next) => {
+  let dateNow = req.params.date;
+  let dateNowNext = Date.parse(dateNow);
+  dateNowNext = new Date(dateNowNext);
+  dateNowNext.setDate(dateNowNext.getDate() + 1);
+  dateNowNext = dateNowNext.toISOString().substring(0, 10);
+  dateNow = new Date(dateNow);
+  dateNowNext = new Date(dateNowNext);
   try {
-    const transactions = await Transaction.find();
+    const transactions = await Transaction.find({
+      createdAt: {
+        $gt: dateNow,
+        $lt: dateNowNext,
+      },
+    });
     return res
       .status(200)
       .json({ success: true, count: transactions.length, data: transactions });

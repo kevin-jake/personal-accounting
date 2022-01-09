@@ -149,3 +149,13 @@ input[type="number"] {
 .list li:hover .delete-btn {
   opacity: 1;
 }
+
+.react-datepicker-wrapper {
+  display: table-caption;
+  width: 100%;
+  margin: 0;
+}
+
+.date-btn {
+  margin: 0;
+}
