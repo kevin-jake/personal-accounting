@@ -18,13 +18,17 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 app.use("/api/v1/transactions", transactions);
 
 app.get("/", (req, res) => {
   res.send("Hello!");
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(
   PORT,
   console.log(
